@@ -3,10 +3,16 @@ package database.c347.soi.rp.edu.sg.viewpagertab;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,6 +24,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Tab1 extends Fragment {
+
+    List<Book> bookList;
+    RecyclerView rvBookList;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,7 +74,34 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab1, container, false);
+        View v = inflater.inflate(R.layout.fragment_tab1, container, false);
+        rvBookList = (RecyclerView) v.findViewById(R.id.rvBookList);
+        bookList = new ArrayList<>();
+
+        bookList.add(new Book("Yukina 01", "Caregorie", "Description Book", R.drawable.y_image_01));
+        bookList.add(new Book("Yukina 02", "Caregorie", "Description Book", R.drawable.y_image_02));
+        bookList.add(new Book("Yukina 03", "Caregorie", "Description Book", R.drawable.y_image_03));
+        bookList.add(new Book("Yukina 04", "Caregorie", "Description Book", R.drawable.y_image_04));
+        bookList.add(new Book("Yukina 05", "Caregorie", "Description Book", R.drawable.y_image_05));
+
+        bookList.add(new Book("Yukina 06", "Caregorie", "Description Book", R.drawable.y_image_06));
+        bookList.add(new Book("Yukina 07", "Caregorie", "Description Book", R.drawable.y_image_07));
+        bookList.add(new Book("Yukina 08", "Caregorie", "Description Book", R.drawable.y_image_08));
+        bookList.add(new Book("Yukina 09", "Caregorie", "Description Book", R.drawable.y_image_09));
+        bookList.add(new Book("Yukina 10", "Caregorie", "Description Book", R.drawable.y_image_10));
+
+        bookList.add(new Book("Yukina 11", "Caregorie", "Description Book", R.drawable.y_image_11));
+        bookList.add(new Book("Yukina 12", "Caregorie", "Description Book", R.drawable.y_image_12));
+        bookList.add(new Book("Yukina 13", "Caregorie", "Description Book", R.drawable.y_image_13));
+        bookList.add(new Book("Yukina 14", "Caregorie", "Description Book", R.drawable.y_image_14));
+        bookList.add(new Book("Yukina 15", "Caregorie", "Description Book", R.drawable.y_image_01));
+
+        RecycleViewAdapter2 myAdapter = new RecycleViewAdapter2(getContext(), bookList);
+        rvBookList.setHasFixedSize(true);
+        rvBookList.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        rvBookList.setAdapter(myAdapter);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
