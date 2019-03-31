@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class RecycleViewAdapter2 extends RecyclerView.Adapter<RecycleViewAdapter2.MyViewHolder> {
@@ -33,7 +35,7 @@ public class RecycleViewAdapter2 extends RecyclerView.Adapter<RecycleViewAdapter
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvTitle.setText(mData.get(position).getTitle());
-        holder.ivImage.setImageResource(mData.get(position).getImage());
+        Glide.with(mContext).load(mData.get(position).getImgURL()).into(holder.ivImage);
     }
 
     @Override

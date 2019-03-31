@@ -4,9 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,6 +23,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Tab3 extends Fragment {
+
+    List<Book> bookList;
+    RecyclerView rvBookList;
+    ArrayList<BandMemberImage> bandMemberImages;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,7 +74,23 @@ public class Tab3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab3, container, false);
+        View v = inflater.inflate(R.layout.fragment_tab3, container, false);
+        rvBookList = (RecyclerView) v.findViewById(R.id.rvBookList);
+        bookList = new ArrayList<>();
+        bandMemberImages = new ArrayList<>();
+        BandMemberImage memberImage = new BandMemberImage();
+        memberImage.getYukinaRarity(2, bandMemberImages);
+
+        for(BandMemberImage bmi : bandMemberImages){
+            bookList.add(new Book(bmi.getImgTItle(), "Caregorie", "Descripton Book", bmi.getImgURL()));
+        }
+
+        RecycleViewAdapter2 myAdapter = new RecycleViewAdapter2(getContext(), bookList);
+        rvBookList.setHasFixedSize(true);
+        rvBookList.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        rvBookList.setAdapter(myAdapter);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

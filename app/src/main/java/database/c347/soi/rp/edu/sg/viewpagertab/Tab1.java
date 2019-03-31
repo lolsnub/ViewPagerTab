@@ -27,6 +27,7 @@ public class Tab1 extends Fragment {
 
     List<Book> bookList;
     RecyclerView rvBookList;
+    ArrayList<BandMemberImage> bandMemberImages;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,27 +75,35 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+//        bookList.add(new Book("Yukina 01", "Caregorie", "Description Book", R.drawable.y_image_01));
+//        bookList.add(new Book("Yukina 02", "Caregorie", "Description Book", R.drawable.y_image_02));
+//        bookList.add(new Book("Yukina 03", "Caregorie", "Description Book", R.drawable.y_image_03));
+//        bookList.add(new Book("Yukina 04", "Caregorie", "Description Book", R.drawable.y_image_04));
+//        bookList.add(new Book("Yukina 05", "Caregorie", "Description Book", R.drawable.y_image_05));
+//
+//        bookList.add(new Book("Yukina 06", "Caregorie", "Description Book", R.drawable.y_image_06));
+//        bookList.add(new Book("Yukina 07", "Caregorie", "Description Book", R.drawable.y_image_07));
+//        bookList.add(new Book("Yukina 08", "Caregorie", "Description Book", R.drawable.y_image_08));
+//        bookList.add(new Book("Yukina 09", "Caregorie", "Description Book", R.drawable.y_image_09));
+//        bookList.add(new Book("Yukina 10", "Caregorie", "Description Book", R.drawable.y_image_10));
+//
+//        bookList.add(new Book("Yukina 11", "Caregorie", "Description Book", R.drawable.y_image_11));
+//        bookList.add(new Book("Yukina 12", "Caregorie", "Description Book", R.drawable.y_image_12));
+//        bookList.add(new Book("Yukina 13", "Caregorie", "Description Book", R.drawable.y_image_13));
+//        bookList.add(new Book("Yukina 14", "Caregorie", "Description Book", R.drawable.y_image_14));
+//        bookList.add(new Book("Yukina 15", "Caregorie", "Description Book", R.drawable.y_image_01));
+
+        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tab1, container, false);
         rvBookList = (RecyclerView) v.findViewById(R.id.rvBookList);
         bookList = new ArrayList<>();
+        bandMemberImages = new ArrayList<>();
+        BandMemberImage memberImage = new BandMemberImage();
+        memberImage.getYukinaRarity(4, bandMemberImages);
 
-        bookList.add(new Book("Yukina 01", "Caregorie", "Description Book", R.drawable.y_image_01));
-        bookList.add(new Book("Yukina 02", "Caregorie", "Description Book", R.drawable.y_image_02));
-        bookList.add(new Book("Yukina 03", "Caregorie", "Description Book", R.drawable.y_image_03));
-        bookList.add(new Book("Yukina 04", "Caregorie", "Description Book", R.drawable.y_image_04));
-        bookList.add(new Book("Yukina 05", "Caregorie", "Description Book", R.drawable.y_image_05));
-
-        bookList.add(new Book("Yukina 06", "Caregorie", "Description Book", R.drawable.y_image_06));
-        bookList.add(new Book("Yukina 07", "Caregorie", "Description Book", R.drawable.y_image_07));
-        bookList.add(new Book("Yukina 08", "Caregorie", "Description Book", R.drawable.y_image_08));
-        bookList.add(new Book("Yukina 09", "Caregorie", "Description Book", R.drawable.y_image_09));
-        bookList.add(new Book("Yukina 10", "Caregorie", "Description Book", R.drawable.y_image_10));
-
-        bookList.add(new Book("Yukina 11", "Caregorie", "Description Book", R.drawable.y_image_11));
-        bookList.add(new Book("Yukina 12", "Caregorie", "Description Book", R.drawable.y_image_12));
-        bookList.add(new Book("Yukina 13", "Caregorie", "Description Book", R.drawable.y_image_13));
-        bookList.add(new Book("Yukina 14", "Caregorie", "Description Book", R.drawable.y_image_14));
-        bookList.add(new Book("Yukina 15", "Caregorie", "Description Book", R.drawable.y_image_01));
+        for(BandMemberImage bmi : bandMemberImages){
+            bookList.add(new Book(bmi.getImgTItle(), "Caregorie", "Descripton Book", bmi.getImgURL()));
+        }
 
         RecycleViewAdapter2 myAdapter = new RecycleViewAdapter2(getContext(), bookList);
         rvBookList.setHasFixedSize(true);
